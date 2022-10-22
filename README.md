@@ -1,6 +1,6 @@
 # spp
 
-A new Flutter project.
+Project Flutter Bquranic APP.
 
 ## Getting Started
 
