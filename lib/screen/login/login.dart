@@ -66,7 +66,7 @@ class _loginstate extends State<login> {
               isChecked = value;
             });
           },
-          checkColor: Colors.blue,
+          checkColor: Color.fromARGB(255, 56, 137, 203),
           fillColor: MaterialStateProperty.all(Colors.white),
         ),
         const Text(
@@ -203,7 +203,7 @@ class _loginstate extends State<login> {
               child: Column(
                 children: [
                   const Text(
-                    'Sing in',
+                    'Login BequraniqApp',
                     style: TextStyle(
                       fontFamily: 'PT-Sans',
                       fontSize: 30,
@@ -212,7 +212,7 @@ class _loginstate extends State<login> {
                     ),
                   ),
                   const SizedBox(
-                    height: 30,
+                    height: 100,
                   ),
                   Container(
                     alignment: Alignment.centerLeft,
