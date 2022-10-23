@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:spp/screen/home/home.dart';
-import 'package:spp/screen/login/login.dart';
-import 'package:spp/screen/monitoring/health.dart';
-import 'package:spp/screen/monitoring/spp.dart';
+
 import 'package:spp/theme/colors/light_colors.dart';
+import 'package:spp/view/home/home.dart';
+import 'package:spp/view/login/login.dart';
+import 'package:spp/view/monitoring/health.dart';
+import 'package:spp/view/monitoring/spp.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
