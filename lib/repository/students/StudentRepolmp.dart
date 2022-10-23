@@ -21,4 +21,17 @@ class StudentRepolmp implements StudentsRepo {
       print("MARAJ-E $e}");
     }
   }
+
+  Future<StudentModel> DetailStudent() async {
+    try {
+      dynamic response =
+          await _apiService.getResponse(ApiEndPoints().getstudent);
+      print("MARAJ $response");
+      final jsonData = StudentModel.fromJson(response);
+      return jsonData;
+    } catch (e) {
+      throw e;
+      print("MARAJ-E $e}");
+    }
+  }
 }
