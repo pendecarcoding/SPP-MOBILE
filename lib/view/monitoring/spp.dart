@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:spp/theme/colors/light_colors.dart';
+import 'package:spp/res/theme/colors/light_colors.dart';
 
 class spp extends StatefulWidget {
   const spp({Key? key}) : super(key: key);

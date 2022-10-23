@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:spp/res/theme/colors/light_colors.dart';
+import 'package:spp/res/widgets/top_container.dart';
 
-import '../../theme/colors/light_colors.dart';
-import '../../widgets/active_project_card.dart';
-import '../../widgets/task_column.dart';
-import '../../widgets/top_container.dart';
+import '../../res/widgets/active_project_card.dart';
+import '../../res/widgets/task_column.dart';
 
 class home extends StatelessWidget {
   Text subheading(String title) {

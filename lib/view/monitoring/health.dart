@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:spp/theme/colors/light_colors.dart';
+
+import '../../res/theme/colors/light_colors.dart';
 
 class health extends StatefulWidget {
   const health({Key? key}) : super(key: key);

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:spp/res/theme/colors/light_colors.dart';
 
-import 'package:spp/theme/colors/light_colors.dart';
 import 'package:spp/view/home/home.dart';
 import 'package:spp/view/login/login.dart';
 import 'package:spp/view/monitoring/health.dart';
