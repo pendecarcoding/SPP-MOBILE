@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:spp/data/remote/response/Status.dart';
+import 'package:spp/view_model/login/LoginVM.dart';
 
 class login extends StatefulWidget {
   const login({Key? key}) : super(key: key);
@@ -7,21 +9,49 @@ class login extends StatefulWidget {
   State<login> createState() => _loginstate();
 }
 
+enum LoginStatus { notSignIn, signIn }
+
 class _loginstate extends State<login> {
   bool? isChecked = false;
+  LoginStatus _loginStatus = LoginStatus.notSignIn;
+  String? email, password;
+  final _key = new GlobalKey<FormState>();
+  final LoginVM viewModel = LoginVM();
+  check() {
+    final form = _key.currentState;
+    if (form!.validate()) {
+      form.save();
+      login();
+    }
+  }
+
+  login() async {
+    viewModel.actlogin("email", "password");
+    if (viewModel.login.status == Status.COMPLETED) {
+      savepref(viewModel.login.data!.datas);
+    }
+  }
+
+  savepref(datas) {
+    datas['id'];
+  }
 
   Widget _buildTextField({
     required bool obscureText,
     Widget? prefixedIcon,
     String? hintText,
+    required String? Function(dynamic e) validator,
+    required Function(dynamic e) onSaved,
   }) {
     return Material(
       color: Colors.transparent,
       elevation: 2,
-      child: TextField(
+      child: TextFormField(
         cursorColor: Colors.white,
         cursorWidth: 2,
         obscureText: obscureText,
+        validator: validator,
+        onSaved: onSaved,
         style: const TextStyle(color: Colors.white),
         decoration: InputDecoration(
           border: InputBorder.none,
@@ -81,7 +111,7 @@ class _loginstate extends State<login> {
     );
   }
 
-  Widget _buildLoginButton() {
+  Widget _buildLoginButton({required VoidCallback onPressed}) {
     return SizedBox(
       height: 64,
       width: double.infinity,
@@ -108,9 +138,7 @@ class _loginstate extends State<login> {
             color: Colors.black,
           ),
         ),
-        onPressed: () {
-          Navigator.pushNamed(context, 'home');
-        },
+        onPressed: onPressed,
       ),
     );
   }
@@ -135,7 +163,9 @@ class _loginstate extends State<login> {
       children: [
         _buildLogoButton(
           image: 'assets/images/google_logo.png',
-          onPressed: () {},
+          onPressed: () {
+            check();
+          },
         ),
         _buildLogoButton(
           image: 'assets/images/apple_logo.png',
@@ -179,7 +209,8 @@ class _loginstate extends State<login> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return Form(
+      key: _key,
       child: Scaffold(
         body: Container(
           width: double.infinity,
@@ -234,6 +265,12 @@ class _loginstate extends State<login> {
                   _buildTextField(
                     hintText: 'Enter your email',
                     obscureText: false,
+                    validator: (e) {
+                      if (e!.isEmpty) {
+                        return "Email harus diisi";
+                      }
+                    },
+                    onSaved: (e) => email = e,
                     prefixedIcon: const Icon(Icons.mail, color: Colors.white),
                   ),
                   const SizedBox(
@@ -257,6 +294,12 @@ class _loginstate extends State<login> {
                   _buildTextField(
                     hintText: 'Enter your password',
                     obscureText: true,
+                    validator: (e) {
+                      if (e!.isEmpty) {
+                        return "Password harus diisi";
+                      }
+                    },
+                    onSaved: (e) => password = e,
                     prefixedIcon: const Icon(Icons.lock, color: Colors.white),
                   ),
                   const SizedBox(
@@ -267,38 +310,12 @@ class _loginstate extends State<login> {
                   const SizedBox(
                     height: 15,
                   ),
-                  _buildLoginButton(),
+                  _buildLoginButton(onPressed: () {
+                    check();
+                  }),
                   const SizedBox(
                     height: 20,
                   ),
-                  const Text(
-                    '- OR -',
-                    style: TextStyle(
-                      fontFamily: 'PT-Sans',
-                      fontSize: 16,
-                      color: Colors.white,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  const Text(
-                    'Sign in with',
-                    style: TextStyle(
-                      fontFamily: 'PT-Sans',
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  _buildSocialButtons(),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  _buildSignUpQuestion()
                 ],
               ),
             ),
