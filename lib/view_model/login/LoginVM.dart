@@ -10,7 +10,7 @@ class LoginVM extends ChangeNotifier {
   ApiResponse<LoginModel> login = ApiResponse.loading();
 
   void _setMain(ApiResponse<LoginModel> response) {
-    print("MARAJ :: $response");
+    print("$response");
     login = response;
     notifyListeners();
   }

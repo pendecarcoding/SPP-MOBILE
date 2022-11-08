@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:spp/data/remote/response/Status.dart';
 import 'package:spp/view_model/login/LoginVM.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class login extends StatefulWidget {
   const login({Key? key}) : super(key: key);
@@ -27,13 +28,17 @@ class _loginstate extends State<login> {
 
   login() async {
     viewModel.actlogin("email", "password");
-    if (viewModel.login.status == Status.COMPLETED) {
-      savepref(viewModel.login.data!.datas);
-    }
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text(viewModel.login.status.toString()),
+    ));
+    ;
   }
 
   savepref(datas) {
     datas['id'];
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text("Sending Message"),
+    ));
   }
 
   Widget _buildTextField({

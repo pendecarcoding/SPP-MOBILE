@@ -37,6 +37,7 @@ dependencies:
   percent_indicator: ^4.2.2
   mvc_pattern: ^8.12.0
   http: ^0.13.5
+  fluttertoast: ^8.1.1
 
 dev_dependencies:
   flutter_test:
